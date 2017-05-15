@@ -53,61 +53,70 @@ public class LeetCode_210_CoursesSchedule_II {
     //     }
     // }
 
-
-    // //Ben-DFS (prune)9.22 %
+    ////////////////////////////////////////////////////////////////
+    //Ben-DFS% 87%
     private int index;
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        this.index = numCourses - 1;
-        List<List<Integer>> graph = new ArrayList<List<Integer>>();
         int[] ans = new int[numCourses];
+        this.index = numCourses-1;//(..)
+        List<List<Integer>> map = new ArrayList<List<Integer>>();
 
+        //Build Map
+        // for (List<Integer> i:map){ //GG
         for(int i=0; i<numCourses;i++){
-            graph.add(new ArrayList<Integer>());
+            map.add(new ArrayList<Integer>());
+        }
+        for(int[] course: prerequisites){
+            // System.out.println(map.get(course[1]));
+            // map.get(course[1].add(course[0]));
+            map.get(course[1]).add(course[0]);//in index[ pair[1] ] put pair[0] (..)
+
         }
 
-        for(int[] pair:prerequisites){
-            graph.get(pair[1]).add(pair[0]);//in index[ pair[1] ] put pair[0] (..)
-        }
+        // System.out.println("------");
+        // //(..) Good Print
+        // for (List<Integer> i:map){
+        //     System.out.println(i);
+        // }
+        // Your input
+        // 4
+        // [[3,1],[1,0],[0,3],[2,0]]
 
-        int[] visited = new int[numCourses]; //(..)
-        HashSet hs = new HashSet();
-
-        for(int i=0;i < numCourses;i++){
-            if (hs.contains(i)){
-                System.out.println("contains "+i);
-                continue;
-            }
-            if(findCircle(graph,visited,i,hs,ans)){  //helper
+        // Your stdout
+        // [1, 2]
+        // [3]
+        // []
+        // [0]
+        int[] visited = new int[numCourses];
+        for (int i=0; i<numCourses; i++){
+            if (findCircle(map, i, visited, ans)){
                 return new int[0];
             }
         }
+
         return ans;
     }
-
-    public boolean findCircle(List<List<Integer>> graph,int[] visited, int cur,HashSet hs,int[] ans){
-        if(visited[cur] == -1){
+    private boolean findCircle(List<List<Integer>> map, int cur, int[] visited, int[] ans){
+        // visit
+        if (visited[cur] == -1){
             return true;
         }
-
+        // in ans
         if (visited[cur] == 1){
             return false;
         }
 
         visited[cur] = -1;
-        // visited[pos] = true;//(..)
-        hs.add( cur );
-        // ans[numCount].add(cur);
 
-
-        for (int next: graph.get(cur)){
-            if(findCircle(graph,visited,next,hs,ans)){
+        for (int next: map.get(cur)){
+            if(findCircle(map,next,visited,ans)){
                 return true;
             }
         }
-        // visited[pos] = false;//(..)
-        visited[cur] = 1;
-        ans[index--] = cur; //(..) II key!
 
+        visited[cur] = 1;
+        ans[index -- ] = cur;//(..)
         return false;
+
     }
 }
