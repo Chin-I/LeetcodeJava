@@ -43,6 +43,38 @@ public class LeetCode_323_NumberofConnectedComponentsinanUndirectedGraph {
         return i;
     }
 
+    // //Keen-W8-UnionFind 73%
+    // public int countComponents(int n, int[][] edges) {
+    //     // edge(parent,child);
+    //     int[] root = new int[n];
+    //     //initial
+    //     for (int i=0;i<n;i++){
+    //         root[i] = i;
+    //     }
+    //     //connect
+    //     for (int[] edge: edges){
+    //         int parent = findRoot(root,edge[0]);
+    //         int child  = findRoot(root,edge[1]);
+    //         root[child] = parent;
+    //     }
+    //     //count
+    //     int count=0;
+    //     for (int i=0;i<n;i++){
+    //         if (root[i] == i){
+    //             count++;
+    //         }
+    //     }
+    //     return count;
+    // }
+    // private int findRoot(int[] root, int currentNode){
+    //     while(currentNode!=root[currentNode]){
+    //         root[currentNode] = root[root[currentNode]];//Compress
+    //         currentNode = root[currentNode];
+    //     }
+    //     return currentNode;
+    // }
+
+
     // //Ben DFS 40%
     // public int countComponents(int n, int[][] edges) {
     //     List<List<Integer>> map = new ArrayList<List<Integer>>();
