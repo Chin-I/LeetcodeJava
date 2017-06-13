@@ -2,6 +2,22 @@
  * Created by Gene on 6/6/17.
  */
 public class LeetCode_66_PlusOne {
+    //mem -1
+    public int[] plusOne(int[] digits) {
+        int len = digits.length;
+        for (int i = len - 1; i >= 0; i--){ //(..) i>= 0
+            if (digits[i] < 9){
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0; // original == 9;
+        }
+        int[] ans = new int[len+1];
+        ans[0] = 1;
+        return ans;
+    }
+
+    /*
     //44%
     public int[] plusOne(int[] digits) {
         int n = digits.length;
@@ -19,7 +35,7 @@ public class LeetCode_66_PlusOne {
 
         return newNumber;
     }
-
+    */
         /*
         //Gene 7%
         public int[] plusOne(int[] digits) {
