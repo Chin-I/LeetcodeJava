@@ -9,10 +9,11 @@ public class LeetCode_46_Permutations {
          if (nums == null || nums.length == 0){
              return ans;
          }
-         Arrays.sort(nums); //Arrays is special
+//         Arrays.sort(nums); //Arrays is special
          helper(ans, new ArrayList<Integer>(), nums, new boolean[nums.length]);
          return ans;
      }
+
      public void helper(List<List<Integer>> ans, ArrayList<Integer> path, int[] nums, boolean[] isVisited){
          if (path.size() == nums.length){
              // ans.add(path);
@@ -31,6 +32,5 @@ public class LeetCode_46_Permutations {
              isVisited[i] = false;
          }
          return;
-
      }
 }
