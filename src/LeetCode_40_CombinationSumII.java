@@ -41,9 +41,9 @@ public class LeetCode_40_CombinationSumII {
         //Main
         // for (int c: candidates){
         for (int i = start; i < candidates.length; i++){ //Avoid duplicate
-            // if (i > start && candidates[i] == candidates[i-1]){
-            //     continue;
-            // }
+             if (i > start && candidates[i] == candidates[i-1]){
+                 continue;
+             }
             combo.add(candidates[i]);
             if(candidates[i] <= remain){ //(..) <=
                 helper(ans,combo,candidates, i+1, remain - candidates[i]);//i+1
